@@ -1,0 +1,97 @@
+# Tanner Preissler
+# AIST 2120, Programming Assignment 1 - Ch. 3
+# 9/6/2022
+# Program that completes the Collatz sequence
+
+#Functions
+
+def collatz(number):
+    """Returns number after doing the Collatz operation"""
+    if number % 2 == 0:
+        return number // 2
+    elif number % 2 != 0:
+        return 3 * number + 1
+
+#Main
+
+#Welcome Banner
+
+print()
+print('--------------------------------'.center(60))
+print('---        AIST 2120         ---'.center(60))
+print('---      Programming Assignment 1     ---'.center(60))
+print('---     Collatzinator    ---'.center(60))
+print('--------------------------------'.center(60))
+print()
+
+#Prompt the user for input and then store the value in userInput.
+
+print("To Collatz a number, please enter a positive integer: ", end = "")
+userInput = input()
+
+#Input validation to be applied to userInput.
+
+isValid = False
+while isValid == False:
+   
+    #Try except block to catch value error if user did not enter an integer before conversion to int.
+
+    try:
+        userInput = int(userInput)
+    except ValueError:
+        print("Oops, the Collatzinator only works with positive numbers.")
+        print()
+        print("To continue, please enter a positive integer: ", end = "")
+        userInput = input()
+        continue 
+    
+    #Input validation to make sure that userInput is a positive number.
+
+    if userInput <= 0:
+        print("Oops, the Collatzinator only works with positive numbers.")
+        print()
+        print("To continue, please enter a positive integer: ", end = "")
+        userInput = input()
+        continue
+    else:
+        print()
+        isValid = True
+
+#After input validation, print userInput to the screen
+
+print(f"The user chose {userInput}")
+print()
+print(f"\tThe first number in the sequence is {userInput}")
+
+#Create variable, times, that counts time collatz has executed. 
+
+times = 1
+
+#While loop to call collatz() as long as userInput doesn't equal 1
+
+while userInput != 1:
+    userInput = collatz(userInput)
+    print(f"\tThe next number in the sequence is {userInput}")
+    times += 1
+
+#Final print message after collatz sequence finished.
+
+print()
+if times <=10:
+    print(f"\tCollatz executed {times} times.")
+else:
+    print(f"\t***Collatz executed {times} times. Thats a lot of times!***")
+print()
+print("Collatz sequence complete!")
+
+#End Banner
+
+print()
+print('--------------------------------'.center(60))
+print('---        Collatzinator         ---'.center(60))
+print('---      Complete      ---'.center(60))
+print('---     End Programming Assignment 1    ---'.center(60))
+print('--------------------------------'.center(60))
+print()
+
+#End of Main
